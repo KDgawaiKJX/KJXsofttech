@@ -17,9 +17,11 @@
     "emailjs-com": "^3.2.0",
     "framer-motion": "^10.16.5",
     "js-cookie": "^3.0.5",
-    "react": "^18.2.0",
+    "react": "18.2.0",
+    "react-animations": "^1.0.0",
     "react-bootstrap": "^2.9.1",
-    "react-dom": "^18.2.0",
+    "react-dom": "18.2.0",
+    "react-gif-player": "^0.4.2",
     "react-icons": "^4.11.0",
     "react-router-dom": "^6.16.0",
     "react-scripts": "^5.0.1",
@@ -56,10 +58,11 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^6.1.1",
     "tailwindcss": "^3.3.5"
   },
   "peerDependencies": {
     "react": "18.2.0",
     "react-dom": "18.2.0"
-    }
+  }
 }

@@ -125,7 +125,7 @@ export default Service;
 const Card = styled.div`
     width:100%;
     height: 200px;
-    background-color: #fff;
+    background-color: fff;
     display: flex;
     flex-direction: column;
     align-items: center;

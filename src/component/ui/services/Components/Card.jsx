@@ -43,3 +43,5 @@ function Card({ imagen, onClick }) {
 }
 
 export default Card;
+
+

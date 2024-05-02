@@ -1,187 +1,212 @@
-import { useState, useEffect } from "react"
-import styled from "styled-components"
-import data from "../../../services.json"
+import React, { useState, useEffect } from "react";
+import styled, { keyframes } from "styled-components";
+import data from "../../../services.json";
+import { fadeIn } from "react-animations";
 
-const MoreServices = () => {
-    const [active, setActive] = useState();
-
-    const [searchTerm, setSearchTerm] = useState('AI/ML');
-    const [filteredData, setFilteredData] = useState(data.data);
-
-    useEffect(() => {
-        const filteredResults = data.data.filter(item =>
-            item.id.includes(searchTerm)
-        );
-        setFilteredData(filteredResults);
-    })
-
-
-
-
-
-
-    return (
-        <Section>
-            <Wrapper>
-                <Title className='text-cyan-700'>Services</Title>
-                <Holder>
-                    <Text>
-                        <H1>More Services</H1>
-                    </Text>
-                    <Cards>
-                        <Hold>
-                            <Li className="cursor-pointer 2xl:active:text-black  xl:active:text-black active:hover:text-black md:active:text-black xl:hover:text-black lg:hover:text-black md:hover:text-black active:text-black  " onClick={() => {
-                                setSearchTerm('AI/ML')
-                            }} >AI/ML</Li>
-                            <Li className="cursor-pointer 2xl:active:text-black  xl:active:text-black active:hover:text-black md:active:text-black xl:hover:text-black lg:hover:text-black md:hover:text-black active:text-black  " onClick={() => {
-                                setSearchTerm("Data Engineering")
-                            }}>Data Engineering</Li>
-                            <Li className="cursor-pointer 2xl:active:text-black  xl:active:text-black active:hover:text-black md:active:text-black xl:hover:text-black lg:hover:text-black md:hover:text-black active:text-black  " onClick={() => {
-                                setSearchTerm("Cloud Service")
-                            }}>Cloud Services</Li>
-                            <Li className="cursor-pointer 2xl:active:text-black  xl:active:text-black active:hover:text-black md:active:text-black xl:hover:text-black lg:hover:text-black md:hover:text-black active:text-black  " onClick={() => {
-                                setSearchTerm("Development")
-                            }}>Web Development</Li>
-                            <Li className="cursor-pointer 2xl:active:text-black  xl:active:text-black active:hover:text-black md:active:text-black xl:hover:text-black lg:hover:text-black md:hover:text-black active:text-black  " onClick={() => {
-                                setSearchTerm("Api")
-                            }}>API</Li>
-                            <Li className="cursor-pointer 2xl:active:text-black  xl:active:text-black active:hover:text-black md:active:text-black xl:hover:text-black lg:hover:text-black md:hover:text-black active:text-black  " onClick={() => {
-                                setSearchTerm("MVC")
-                            }}>MVC</Li>
-                            <Li className="cursor-pointer 2xl:active:text-black  xl:active:text-black active:hover:text-black md:active:text-black xl:hover:text-black lg:hover:text-black md:hover:text-black active:text-black  " onClick={() => {
-                                setSearchTerm("UI/UX")
-                            }}>UI/UX</Li>
-                            <Li className="cursor-pointer 2xl:active:text-black  xl:active:text-black active:hover:text-black md:active:text-black xl:hover:text-black lg:hover:text-black md:hover:text-black active:text-black  " onClick={() => {
-                                setSearchTerm("App")
-                            }}>APP</Li>
-                        </Hold>
-                        <HoldCard className="md:mt-20">
-                            {
-                                filteredData?.map((props) => (
-                                    <a href={props.link} target="_blank" rel="noopener noreferrer">
-                                        <Card key={props.name}>
-                                            <img src={props.image} />
-                                            <p>{props.name}</p>
-                                        </Card>
-                                    </a>
-                                ))
-                            }
-                        </HoldCard>
-                    </Cards>
-                </Holder>
-            </Wrapper>
-        </Section>
-    )
-}
-
-export default MoreServices;
-
-const HoldCard = styled.div`
-    width:100%;
-    display:flex;
-    justify-content:center;
-    align-items: center;
-    flex-wrap: wrap;
-
-     @media (max-width:780px){
-        margin-top:50px;
-    }
-`
-
-const Card = styled.div`
-    width:200px;
-    height:200px;
-    display:flex;
-    flex-direction:column;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
-
-    img{
-        width:100px;
-        height:100px;
-      
-        object-fit:contain;
-    }
-
-    p{
-        text-decoration:none;
-    }
-`
-
-const Li = styled.div`
-    padding: 10px 15px;
-    font-weight: bold;
-    margin-left:20px;
-    font-size: 15px;
-    // border-radius: 50px;
-    border-bottom:3px solid lightblue;
- 
-`
-
-const Hold = styled.div`
-    width:100%;
-    height:100px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    flex-wrap:wrap;
-    curser:pointer;
-`
-
-const Cards = styled.div`
-    width:100%;
-    min-height:calc(50vh - 80px);
-    height: 100%;
-    display:flex;
-    flex-direction: column;
-    padding:60px 0px 0px;
-    align-self:center;
-    
-`
-
-const H1 = styled.h1`
-    margin:0;
-    font-size:17px;
-
-    @media (min-width:1024px){
-        font-size:35px;
-    }
-`
-
-const Text = styled.div``
-
-const Holder = styled.div`
-    width:100%;
-    align-self:center;
-
-    @media (min-width:1024px){
-        width:95%;
-    }
-`
-
-const Title = styled.h1`
-    font-size:40px;
-    margin:0;
-    
-    /* opacity:20%; */
-   
-    @media (min-width:1024px){
-        font-size:65px;
-    }
-`
-
-const Wrapper = styled.div`
-    width:95%;
-    display:flex;
-    flex-direction:column;
-`
+const fadeInAnimation = keyframes`${fadeIn}`;
 
 const Section = styled.section`
-    width:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px 0px;
-    color:#006400;
-`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0px;
+  background: linear-gradient(rgba(0, 0, 0.5, 1), rgba(255, 255, 255, 1)); 
+  color: #000;
+`;
+
+const Wrapper = styled.div`
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  animation: 1s ${fadeInAnimation};
+`;
+
+const Title = styled.h1`
+  font-size: 50px;
+  margin: 0;
+  @media (min-width: 1024px) {
+    font-size: 100px;
+  }
+`;
+
+const Holder = styled.div`
+  width: 100%;
+  min-height: 88vh;
+  height: 100%;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+`;
+
+const H1 = styled.h1`
+  margin: 0;
+  margin-top: 100;
+  font-size: 17px;
+  color: #000;
+  @media (min-width: 1024px) {
+    font-size: 55px;
+  }
+`;
+
+const Text = styled.div`
+  margin-top: 20px;
+`;
+
+const HolderTwo = styled.div`
+  width: 100%;
+  height: 85%;
+  padding: 30px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media (min-width: 766px) {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: ${({ rw }) => (rw ? "row" : "row-reverse")};
+  }
+`;
+
+const Image = styled.div`
+  width: 100%;
+  font-weight: bold;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  p {
+    font-size: 30px;
+    margin-bottom: 0;
+  }
+  @media (min-width: 766px) {
+    width: 45%;
+    align-self: flex-start;
+  }
+  @media (min-width: 1205px) {
+    height: 500px;
+    width: 50%;
+  }
+`;
+
+const CardHold = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+`;
+
+const Card = styled.div`
+  width: 300px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 5px lightgrey;
+  border-radius: 10px;
+  padding: 10px 0px;
+  margin: 20px 0px;
+  background: linear-gradient(
+    to bottom,
+    #0d9488 0%,
+    #00bf72 50%,
+    #0d9488 100%
+  );
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.10);
+    box-shadow: 0px 0px 10px lightgrey;
+  }
+  p {
+    width: 70%;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+  }
+  img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+  }
+  @media (max-width: 766px) {
+    width: 90%;
+  }
+`;
+
+const MoreServices = () => {
+  const [searchTerm, setSearchTerm] = useState("AI/ML");
+  const [filteredData, setFilteredData] = useState(data.data);
+
+  useEffect(() => {
+    const filteredResults = data.data.filter((item) =>
+      item.id.includes(searchTerm)
+    );
+    setFilteredData(filteredResults);
+  }, [searchTerm]);
+
+  return (
+    <Section>
+      <Wrapper>
+        <Title className="text-cyan-700">Services</Title>
+        <Holder>
+          <Text>
+            <H1>More Services</H1>
+          </Text>
+          <HolderTwo>
+            <CardHold>
+              <Card onClick={() => setSearchTerm("AI/ML")}>
+                <p>AI/ML</p>
+              </Card>
+              <Card onClick={() => setSearchTerm("Data Engineering")}>
+                <p>Data Engineering</p>
+              </Card>
+              <Card onClick={() => setSearchTerm("Cloud Service")}>
+                <p>Cloud Services</p>
+              </Card>
+              <Card onClick={() => setSearchTerm("Development")}>
+                <p>Web Development</p>
+              </Card>
+              <Card onClick={() => setSearchTerm("Api")}>
+                <p>API</p>
+              </Card>
+              <Card onClick={() => setSearchTerm("MVC")}>
+                <p>MVC</p>
+              </Card>
+              <Card onClick={() => setSearchTerm("UI/UX")}>
+                <p>UI/UX</p>
+              </Card>
+              <Card onClick={() => setSearchTerm("App")}>
+                <p>APP</p>
+              </Card>
+            </CardHold>
+            <CardHold>
+              {filteredData?.map((props) => (
+                <a
+                  key={props.name}
+                  href={props.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Card>
+                    <img src={props.image} alt={props.name} />
+                    <p>{props.name}</p>
+                  </Card>
+                </a>
+              ))}
+            </CardHold>
+          </HolderTwo>
+        </Holder>
+      </Wrapper>
+    </Section>
+  );
+};
+
+export default MoreServices;
